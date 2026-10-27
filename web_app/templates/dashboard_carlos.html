@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard 2: Mr. Carlos — Sports Investment & Regional Efficiency{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Dashboard 2: Olympic Performance &amp; Regional Efficiency Dashboard</h2>
+        <p>Sports development fund cockpit analyzing capital investment, medal returns, and regional funding efficiency.</p>
+    </div>
+    <div class="persona-badge" style="border-color: #00A651; color: #00A651; background: rgba(0, 166, 81, 0.15);">
+        <span>Analyst: Mr. Carlos &bull; International Sports Development Fund</span>
+    </div>
+</div>
+
+<!-- Narrative Context Card -->
+<div class="narrative-card" style="border-left-color: #00A651;">
+    <h4 style="color: #00A651;">Grant Allocation &amp; ROI Objective</h4>
+    <p>
+        Mr. Carlos assesses the relationship between national funding allocations ($ Millions USD) and podium output across multiple cycles. 
+        Using the <strong>Global Sports Investment vs. Medal Performance bubble chart</strong>, Carlos spots overperforming nations like 
+        <strong style="color: #00d2ff;">Slovakia</strong>, <strong style="color: #00d2ff;">Georgia</strong>, and <strong style="color: #00d2ff;">Ethiopia</strong>, 
+        whose disproportionate bubble volumes reflect stellar medal yield relative to modest financial inputs. 
+        Additionally, the <strong>Average Medal Efficiency Percentage by Region pie chart</strong> reveals that 
+        <strong style="color: #00A651;">South America leads the world at 49.64%</strong>, followed by 
+        <strong style="color: #0081C8;">Europe/Asia at 45.98%</strong>, directing international grant distributions to high-potential emerging ecosystems.
+    </p>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+    <div class="kpi-card" style="border-left: 4px solid #00A651;">
+        <div class="kpi-title">Global Efficiency Leader</div>
+        <div class="kpi-value">South America</div>
+        <div class="kpi-sub">49.64% Average Medal Efficiency</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #0081C8;">
+        <div class="kpi-title">Volume &amp; Efficiency Leader</div>
+        <div class="kpi-value">Europe/Asia</div>
+        <div class="kpi-sub">45.98% Efficiency ($28.4B invested, 2,210 medals)</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #00d2ff;">
+        <div class="kpi-title">Identified Overperformers</div>
+        <div class="kpi-value">SVK / GEO / ETH</div>
+        <div class="kpi-sub">High medal yield per $1M grant invested</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #FCB131;">
+        <div class="kpi-title">Total Global Investment</div>
+        <div class="kpi-value">$41.5 Billion</div>
+        <div class="kpi-sub">Tracked across 60 NOCs (1992-2026)</div>
+    </div>
+</div>
+
+<!-- Main Visualizations Grid -->
+<div class="dashboard-grid">
+    <!-- Chart 1: Global Sports Investment vs Medal Performance Bubble Chart -->
+    <div class="chart-card col-7">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Global Sports Investment vs. Medal Performance</div>
+                <div class="chart-desc">Bubble Chart: X=Investment ($M), Y=Medals, Size=Efficiency %. Highlighting SVK, GEO, ETH.</div>
+            </div>
+            <span class="chart-badge">Carlos Chart 1</span>
+        </div>
+        <div class="chart-body" style="height: 420px;">
+            <canvas id="investmentBubbleChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#00d2ff;">●</span> <strong>Overperforming Nations (Slovakia, Georgia, Ethiopia)</strong> &bull; 
+            <span style="color:#FFD700;">●</span> Superpowers (USA, China) &bull; 
+            <span style="color:#00A651;">●</span> Global Baseline
+        </div>
+    </div>
+
+    <!-- Chart 2: Average Medal Efficiency Percentage by Region Pie Chart -->
+    <div class="chart-card col-5">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Average Medal Efficiency Percentage by Region</div>
+                <div class="chart-desc">Pie Chart illustrating South America (49.64%) and Europe/Asia (45.98%) leadership.</div>
+            </div>
+            <span class="chart-badge">Carlos Chart 2</span>
+        </div>
+        <div class="chart-body" style="height: 420px;">
+            <canvas id="regionalEfficiencyPie"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#00A651;">■</span> South America (49.64%) &bull; 
+            <span style="color:#0081C8;">■</span> Europe/Asia (45.98%) &bull; 
+            <span style="color:#FCB131;">■</span> Africa (41.25%)
+        </div>
+    </div>
+</div>
+
+<!-- Grant Allocation Recommendations -->
+<div class="dashboard-grid">
+    <div class="chart-card col-12">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Fund Allocation Matrix: Target High-Yield Grant Recipients</div>
+                <div class="chart-desc">Benchmarking overperformers to guide international sports development fund allocation.</div>
+            </div>
+            <span class="chart-badge">Grant Strategy</span>
+        </div>
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Region</th>
+                        <th>Historical Investment ($M)</th>
+                        <th>Total Medals Won</th>
+                        <th>Cost per Medal ($M)</th>
+                        <th>Efficiency Index</th>
+                        <th>Carlos's Grant Recommendation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(0, 210, 255, 0.08);">
+                        <td><strong style="color: #00d2ff;">Slovakia (SVK)</strong></td>
+                        <td>Europe/Asia</td>
+                        <td>$110.0 M</td>
+                        <td><strong>28 Medals</strong></td>
+                        <td>$3.93 M</td>
+                        <td><span style="color: #00d2ff; font-weight:700;">128.4%</span> (Overperformer)</td>
+                        <td>Award $15M equipment grant for canoe slalom and biathlon centers.</td>
+                    </tr>
+                    <tr style="background: rgba(0, 210, 255, 0.08);">
+                        <td><strong style="color: #00d2ff;">Georgia (GEO)</strong></td>
+                        <td>Europe/Asia</td>
+                        <td>$85.0 M</td>
+                        <td><strong>30 Medals</strong></td>
+                        <td>$2.83 M</td>
+                        <td><span style="color: #00d2ff; font-weight:700;">141.2%</span> (Overperformer)</td>
+                        <td>Expand wrestling &amp; judo high-performance academy funding.</td>
+                    </tr>
+                    <tr style="background: rgba(0, 210, 255, 0.08);">
+                        <td><strong style="color: #00d2ff;">Ethiopia (ETH)</strong></td>
+                        <td>Africa</td>
+                        <td>$75.0 M</td>
+                        <td><strong>36 Medals</strong></td>
+                        <td>$2.08 M</td>
+                        <td><span style="color: #00d2ff; font-weight:700;">168.0%</span> (World Highest ROI)</td>
+                        <td>Endow altitude endurance training center and coaching pipeline.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brazil (BRA)</strong></td>
+                        <td>South America</td>
+                        <td>$420.0 M</td>
+                        <td>48 Medals</td>
+                        <td>$8.75 M</td>
+                        <td>49.64% (Regional Anchor)</td>
+                        <td>Support grassroots outreach and aquatic center revitalization.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>United States (USA)</strong></td>
+                        <td>North America</td>
+                        <td>$4,850.0 M</td>
+                        <td>735 Medals</td>
+                        <td>$6.60 M</td>
+                        <td>38.45% (Capital Intensive)</td>
+                        <td>Self-funding private collegiate model; target youth equity programs.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

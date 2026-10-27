@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Executive Overview - Olympic Sports Performance Analysis{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Executive BI Overview: Global Olympic Sports Performance</h2>
+        <p>A multi-dimensional analysis of athletic excellence, national funding ROI, and host advantage across 10 Olympic editions (1992 – 2026).</p>
+    </div>
+    <div class="persona-badge">
+        <span>🏆 60 Nations &bull; 50 Sports &bull; Summer &amp; Winter</span>
+    </div>
+</div>
+
+<!-- Key Performance Indicators -->
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div class="kpi-title">Total Medals Awarded</div>
+        <div class="kpi-value">{{ kpis.total_medals }}</div>
+        <div class="kpi-sub">Across 10 Olympic Cycles</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Athlete Pool Analyzed</div>
+        <div class="kpi-value">{{ kpis.total_athletes }}</div>
+        <div class="kpi-sub">Fielded by 60 NOCs</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Top Medalist Superpower</div>
+        <div class="kpi-value">USA (735)</div>
+        <div class="kpi-sub">China Runner-up (696 Medals)</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Top Regional Efficiency</div>
+        <div class="kpi-value">49.64%</div>
+        <div class="kpi-sub">South America leads world ROI</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Highest Yield Sport</div>
+        <div class="kpi-value">6.916</div>
+        <div class="kpi-sub">Rowing (Medals / Athlete)</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Cycle Peak vs Low</div>
+        <div class="kpi-value">363 / 305</div>
+        <div class="kpi-sub">Tokyo 2020 Peak / Sydney 2000 Low</div>
+    </div>
+</div>
+
+<!-- Three Persona Scenarios Cards -->
+<h3 style="margin-bottom: 16px; font-size: 1.25rem;">Strategic Stakeholder Scenarios</h3>
+<div class="dashboard-grid" style="margin-bottom: 24px;">
+    <!-- Scenario 1: Priya -->
+    <div class="chart-card col-4" style="border-top: 4px solid #0081C8;">
+        <div class="chart-header">
+            <div>
+                <span class="persona-badge" style="margin-bottom: 8px; display:inline-block;">Scenario 1</span>
+                <div class="chart-title">Ms. Priya — NOC Performance Strategist</div>
+                <div class="chart-desc">Sport Category Prioritization &amp; Medal Yield</div>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
+            Identifies high-yield sports where athlete quotas maximize podium returns. Leverages the <strong>Avg Medals per Athlete</strong> benchmark to highlight <strong>Rowing (6.916)</strong> and <strong>Shooting (6.731)</strong> against superpowers like the <strong>United States (735)</strong> and <strong>China (696)</strong>.
+        </p>
+        <a href="/dashboard/priya" class="btn-download" style="text-align: center; justify-content: center; margin-top: auto;">
+            Open Priya's Strategy Dashboard &rarr;
+        </a>
+    </div>
+
+    <!-- Scenario 2: Carlos -->
+    <div class="chart-card col-4" style="border-top: 4px solid #00A651;">
+        <div class="chart-header">
+            <div>
+                <span class="persona-badge" style="margin-bottom: 8px; display:inline-block; border-color:#00A651; color:#00A651; background: rgba(0,166,81,0.15);">Scenario 2</span>
+                <div class="chart-title">Mr. Carlos — Sports Investment Analyst</div>
+                <div class="chart-desc">International Grant Allocation &amp; Efficiency ROI</div>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
+            Evaluates the correlation between financial expenditure and medal success. Uncovers overperforming agile nations such as <strong>Slovakia</strong>, <strong>Georgia</strong>, and <strong>Ethiopia</strong>, and analyzes why <strong>South America (49.64%)</strong> leads continental efficiency ahead of <strong>Europe/Asia (45.98%)</strong>.
+        </p>
+        <a href="/dashboard/carlos" class="btn-download" style="text-align: center; justify-content: center; margin-top: auto; background: linear-gradient(135deg, #00A651, #00d2ff);">
+            Open Carlos's Investment Dashboard &rarr;
+        </a>
+    </div>
+
+    <!-- Scenario 3: William -->
+    <div class="chart-card col-4" style="border-top: 4px solid #FFD700;">
+        <div class="chart-header">
+            <div>
+                <span class="persona-badge" style="margin-bottom: 8px; display:inline-block; border-color:#FFD700; color:#FFD700; background: rgba(255,215,0,0.15);">Scenario 3</span>
+                <div class="chart-title">William Robert — Broadcast Data Journalist</div>
+                <div class="chart-desc">Longitudinal Fluctuations &amp; Host Dominance</div>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
+            Constructs media narratives showcasing cycle fluctuations between the <strong>305 medal low in 2000</strong> to the <strong>363 peak in 2020</strong>, and <strong>334 in Milano-Cortina 2026</strong>. Analyzes home advantage records led by <strong>Japan (105)</strong>, <strong>USA (100)</strong>, and <strong>China (93)</strong>.
+        </p>
+        <a href="/dashboard/william" class="btn-download" style="text-align: center; justify-content: center; margin-top: auto; background: linear-gradient(135deg, #FCB131, #EE334E);">
+            Open William's Narrative Dashboard &rarr;
+        </a>
+    </div>
+</div>
+
+<!-- Quick Preview Charts Grid -->
+<div class="dashboard-grid">
+    <div class="chart-card col-8">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Longitudinal Medal Trajectory (1992 – 2026)</div>
+                <div class="chart-desc">Total Olympic medals awarded per edition, highlighting historical swings.</div>
+            </div>
+            <span class="chart-badge">Visual 1</span>
+        </div>
+        <div class="chart-body">
+            <canvas id="yearlyTrendLineChart"></canvas>
+        </div>
+    </div>
+
+    <div class="chart-card col-4">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Regional Efficiency % Leaderboard</div>
+                <div class="chart-desc">Average medal efficiency percentage across 5 global continental zones.</div>
+            </div>
+            <span class="chart-badge">Visual 5</span>
+        </div>
+        <div class="chart-body">
+            <canvas id="regionalEfficiencyPie"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Project Technical Architecture Matrix -->
+<div class="narrative-card">
+    <h4>Project Execution &amp; Architecture Status</h4>
+    <p>
+        Integrated system delivered with <strong>8 Epics</strong>, <strong>14 Completed Tasks</strong>, <strong>10 Unique BI Visualizations</strong>, <strong>8 Tableau Calculated Fields</strong>, <strong>3 Role-Specific Dashboards</strong>, a <strong>6-Scene Tableau Story</strong>, an embedded <strong>Flask Web Interface</strong>, and validated sub-millisecond query performance.
+    </p>
+</div>
+{% endblock %}

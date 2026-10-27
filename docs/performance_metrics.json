@@ -1,0 +1,162 @@
+{
+  "data_loading": {
+    "status": "PASS",
+    "load_time_seconds": 0.2454,
+    "total_records_loaded": 11326,
+    "master_records": 3353,
+    "athletes_records": 3955,
+    "medal_results_records": 3353,
+    "investment_records": 600,
+    "in_memory_mb": 6.49,
+    "master_csv_size_kb": 485.99,
+    "sqlite_db_size_kb": 2388.0
+  },
+  "filter_performance": [
+    {
+      "filter_name": "Filter by Year (2020 Tokyo Peak)",
+      "matched_rows": 363,
+      "latency_ms": 0.003,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Year (2000 Sydney Low)",
+      "matched_rows": 305,
+      "latency_ms": 0.002,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Year (2026 Winter)",
+      "matched_rows": 334,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Country (USA Superpower)",
+      "matched_rows": 735,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Country (CHN Superpower)",
+      "matched_rows": 696,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Region (South America - High ROI)",
+      "matched_rows": 25,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Region (Europe/Asia)",
+      "matched_rows": 2242,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Sport Category (Rowing - High Yield)",
+      "matched_rows": 166,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Filter by Sport Category (Shooting - High Yield)",
+      "matched_rows": 175,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    },
+    {
+      "filter_name": "Multi-dimensional Slice (Year=2020 & Region=Europe/Asia & Medal=Gold)",
+      "matched_rows": 96,
+      "latency_ms": 0.001,
+      "status": "PASS"
+    }
+  ],
+  "calculated_fields": {
+    "status": "PASS",
+    "total_fields_computed": 8,
+    "execution_time_ms": 22.712,
+    "throughput_ops_per_sec": 1181029.0
+  },
+  "visualizations_benchmarks": [
+    {
+      "viz_id": "Viz_1",
+      "viz_name": "Trend of Total Medals Awarded Over the Years",
+      "chart_type": "Line Chart",
+      "query_latency_ms": 0.581,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_2",
+      "viz_name": "Avg Medals per Athlete by Sport Category",
+      "chart_type": "Horizontal Bar Chart",
+      "query_latency_ms": 0.563,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_3",
+      "viz_name": "Global Performance Metrics by Country",
+      "chart_type": "Stacked Bar Chart",
+      "query_latency_ms": 4.085,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_4",
+      "viz_name": "Global Sports Investment vs. Medal Performance",
+      "chart_type": "Bubble Chart",
+      "query_latency_ms": 1.271,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_5",
+      "viz_name": "Average Medal Efficiency Percentage by Region",
+      "chart_type": "Pie Chart",
+      "query_latency_ms": 0.308,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_6",
+      "viz_name": "Comparing Medal Totals Across Olympic Hosts",
+      "chart_type": "Bar Chart",
+      "query_latency_ms": 0.235,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_7",
+      "viz_name": "Regional Medal Efficiency and Distribution by Sport",
+      "chart_type": "Donut Chart",
+      "query_latency_ms": 1.229,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_8",
+      "viz_name": "Athlete Participation & Gender Trends",
+      "chart_type": "Stacked Area Chart",
+      "query_latency_ms": 1.358,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_9",
+      "viz_name": "Season Dynamics (Summer vs Winter)",
+      "chart_type": "Segmented Bar Chart",
+      "query_latency_ms": 0.81,
+      "status": "OPTIMAL"
+    },
+    {
+      "viz_id": "Viz_10",
+      "viz_name": "Top 15 Sport Categories by Medal Yield",
+      "chart_type": "Treemap / Matrix",
+      "query_latency_ms": 0.201,
+      "status": "OPTIMAL"
+    }
+  ],
+  "summary": {
+    "overall_status": "EXCELLENT",
+    "total_visualizations": 10,
+    "total_calculated_fields": 8,
+    "avg_filter_latency_ms": 0.001,
+    "avg_viz_latency_ms": 1.064,
+    "verdict": "All components pass Tableau BI performance thresholds (< 100ms per dashboard refresh)."
+  }
+}

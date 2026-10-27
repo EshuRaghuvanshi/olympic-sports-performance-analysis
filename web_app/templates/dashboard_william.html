@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard 3: William Robert — Broadcast Journalist & Data Storyteller{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Dashboard 3: Host Impact &amp; Longitudinal Media Analytics</h2>
+        <p>Broadcast journalism intelligence suite powering documentary storylines on host dominance and medal dynamics.</p>
+    </div>
+    <div class="persona-badge" style="border-color: #FFD700; color: #FFD700; background: rgba(255, 215, 0, 0.15);">
+        <span>Storyteller: William Robert &bull; Olympic Broadcast Media Network</span>
+    </div>
+</div>
+
+<!-- Narrative Context Card -->
+<div class="narrative-card">
+    <h4>Documentary Storyline Framework</h4>
+    <p>
+        William Robert prepares a multi-part broadcast documentary investigating the evolving competitive landscape from 1992 to 2026. 
+        Through the <strong>Trend of Total Medals Awarded Over the Years line chart</strong>, viewers trace how Olympic medal volumes swung between 
+        <strong style="color: #EE334E;">a cycle low of 305 medals at Sydney 2000</strong> to 
+        <strong style="color: #FFD700;">an all-time peak of 363 medals at Tokyo 2020</strong>, and stabilized at 
+        <strong style="color: #00A651;">334 medals at Milano-Cortina 2026</strong>. 
+        Using the <strong>Comparing Medal Totals Across Olympic Hosts bar chart</strong>, William spotlights the dramatic home surge led by 
+        <strong style="color: #FFD700;">Japan with 105 medals</strong>, followed by the 
+        <strong style="color: #00d2ff;">United States with 100 medals</strong>, and 
+        <strong style="color: #EE334E;">China with 93 medals</strong>. 
+        Finally, the <strong>Regional Distribution donut chart</strong> visualizes the historical hegemony of European and Asian nations across sport families.
+    </p>
+</div>
+
+<!-- KPI Summary Cards -->
+<div class="kpi-grid">
+    <div class="kpi-card" style="border-left: 4px solid #EE334E;">
+        <div class="kpi-title">Cycle Historical Low</div>
+        <div class="kpi-value">305 Medals</div>
+        <div class="kpi-sub">Sydney 2000 Olympic Games</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #FFD700;">
+        <div class="kpi-title">Cycle All-Time Peak</div>
+        <div class="kpi-value">363 Medals</div>
+        <div class="kpi-sub">Tokyo 2020 Olympic Games</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #00A651;">
+        <div class="kpi-title">Latest Winter Edition</div>
+        <div class="kpi-value">334 Medals</div>
+        <div class="kpi-sub">Milano-Cortina 2026 Games</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #00d2ff;">
+        <div class="kpi-title">Greatest Host Surge</div>
+        <div class="kpi-value">Japan (105)</div>
+        <div class="kpi-sub">+1475% surge over away baseline</div>
+    </div>
+</div>
+
+<!-- Main Visualizations Grid -->
+<div class="dashboard-grid">
+    <!-- Chart 1: Trend of Total Medals Awarded Over the Years Line Chart -->
+    <div class="chart-card col-12">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Trend of Total Medals Awarded Over the Years (1992 – 2026)</div>
+                <div class="chart-desc">Line Chart documenting historical swing: Low of 305 (2000), Peak of 363 (2020), and 334 in 2026.</div>
+            </div>
+            <span class="chart-badge">William Chart 1</span>
+        </div>
+        <div class="chart-body" style="height: 380px;">
+            <canvas id="yearlyTrendLineChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#EE334E;">●</span> <strong>Sydney 2000 (Low: 305)</strong> &bull; 
+            <span style="color:#FFD700;">●</span> <strong>Tokyo 2020 (Peak: 363)</strong> &bull; 
+            <span style="color:#00A651;">●</span> <strong>Milano-Cortina 2026 (334)</strong>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Chart 2: Comparing Medal Totals Across Olympic Hosts Bar Chart -->
+    <div class="chart-card col-7">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Comparing Medal Totals Across Olympic Hosts</div>
+                <div class="chart-desc">Host Nation vs Away Average: Japan (105), USA (100), and China (93).</div>
+            </div>
+            <span class="chart-badge">William Chart 2</span>
+        </div>
+        <div class="chart-body" style="height: 380px;">
+            <canvas id="hostComparisonBarChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#FFD700;">■</span> Japan (105 Medals, 2020) &bull; 
+            <span style="color:#00d2ff;">■</span> USA (100 Medals, 1996) &bull; 
+            <span style="color:#EE334E;">■</span> China (93 Medals, 2008)
+        </div>
+    </div>
+
+    <!-- Chart 3: Regional Medal Efficiency and Distribution Donut Chart -->
+    <div class="chart-card col-5">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Regional Medal Efficiency and Distribution by Sport</div>
+                <div class="chart-desc">Donut Chart proving Europe and Asia dominance across the Olympic ecosystem.</div>
+            </div>
+            <span class="chart-badge">William Chart 3</span>
+        </div>
+        <div class="chart-body" style="height: 380px;">
+            <canvas id="regionalDonutChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            Europe and Asia account for over 65% of global Olympic medal distribution.
+        </div>
+    </div>
+</div>
+
+<!-- Broadcast Narrative Beats -->
+<div class="narrative-card" style="border-left-color: #00d2ff;">
+    <h4 style="color: #00d2ff;">Broadcast Episode Narrative Arcs</h4>
+    <p>
+        <strong>Episode 1: The Millennium Contraction to the Tokyo High-Water Mark</strong> — Explores why Sydney 2000 held the lowest medal tally (305) due to streamlined event formats, before IOC expansions elevated Tokyo 2020 to 363 medals.<br>
+        <strong>Episode 2: The Fortress Effect: Home Turf Alchemy</strong> — Details how domestic athlete preparation, familiarity with venues, and partisan cheering empowered Japan (105 medals in 2020), Atlanta's USA team (100 medals in 1996), and Beijing's China team (93 medals in 2008).<br>
+        <strong>Episode 3: The Alpine Shift: Milano-Cortina 2026</strong> — Analyzes the 334 medals contested in winter sports, highlighting the geographic consolidation of European alpine nations.
+    </p>
+</div>
+{% endblock %}

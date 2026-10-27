@@ -1,0 +1,11 @@
+Host_Country,Country_Code,Host_Year,Host_City,Host_Medals,Non_Host_Avg_Medals,Host_Advantage_Pct,Global_Rank_When_Hosting
+Japan,JPN,2020,Tokyo,105,6.67,1475.0,1
+United States,USA,1996,Atlanta,100,70.55,41.74,1
+China,CHN,2008,Beijing,93,67.0,38.81,1
+Great Britain,GBR,2012,London,65,13.3,388.72,3
+Australia,AUS,2000,Sydney,58,9.1,537.36,4
+Spain,ESP,1992,Barcelona,22,5.1,331.37,6
+Greece,GRE,2004,Athens,16,1.5,966.67,15
+Brazil,BRA,2016,Rio de Janeiro,19,3.2,493.75,13
+France,FRA,2024,Paris,64,7.8,720.51,5
+Italy,ITA,2026,Milano-Cortina,30,10.0,200.0,4

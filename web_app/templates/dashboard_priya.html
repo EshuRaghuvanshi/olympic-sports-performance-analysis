@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard 1: Ms. Priya — NOC Performance Strategist{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Dashboard 1: NOC Strategic Planning &amp; Sport Prioritization</h2>
+        <p>Evidence-based decision cockpit for National Olympic Committees evaluating sport categories, discipline yields, and superpower benchmarks.</p>
+    </div>
+    <div class="persona-badge">
+        <span>Strategist: Ms. Priya &bull; NOC High Performance Directorate</span>
+    </div>
+</div>
+
+<!-- Strategic Context Banner -->
+<div class="narrative-card">
+    <h4>Strategic Scenario Objective</h4>
+    <p>
+        Ms. Priya is responsible for optimizing athlete quota allocations ahead of the upcoming Olympic cycle across 50 sports and 60 nations. 
+        By analyzing athlete accreditation records against podium finishes, Priya isolates disciplines that generate the highest per-athlete medal return — discovering that 
+        <strong style="color: #FFD700;">Rowing generates 6.916 medals per athlete</strong> and 
+        <strong style="color: #00d2ff;">Shooting generates 6.731 medals per athlete</strong>. 
+        Comparing this against superpower baselines led by the <strong>United States (735 total medals)</strong> and <strong>China (696 total medals)</strong> allows Priya to reallocate capital toward high-yield, compact squads.
+    </p>
+</div>
+
+<!-- KPI Summary Cards -->
+<div class="kpi-grid">
+    <div class="kpi-card" style="border-left: 4px solid #FFD700;">
+        <div class="kpi-title">Highest Yield Discipline</div>
+        <div class="kpi-value">Rowing</div>
+        <div class="kpi-sub">6.916 Medals per Athlete (166 Medals / 24 Ath)</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #00d2ff;">
+        <div class="kpi-title">Second Highest Yield</div>
+        <div class="kpi-value">Shooting</div>
+        <div class="kpi-sub">6.731 Medals per Athlete (175 Medals / 26 Ath)</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #0081C8;">
+        <div class="kpi-title">Global Benchmark Leader</div>
+        <div class="kpi-value">USA (735)</div>
+        <div class="kpi-sub">Dominant in Aquatics &amp; Track</div>
+    </div>
+    <div class="kpi-card" style="border-left: 4px solid #EE334E;">
+        <div class="kpi-title">Benchmark Runner-up</div>
+        <div class="kpi-value">China (696)</div>
+        <div class="kpi-sub">Dominant in Table Tennis, Diving, Weightlifting</div>
+    </div>
+</div>
+
+<!-- Main Charts Grid -->
+<div class="dashboard-grid">
+    <!-- Chart 1: Avg Medals per Athlete by Sport Category (Horizontal Bar Chart) -->
+    <div class="chart-card col-6">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Avg Medals per Athlete by Sport Category</div>
+                <div class="chart-desc">Horizontal Bar Chart identifying high-yield vs low-yield sports (Rowing: 6.916, Shooting: 6.731).</div>
+            </div>
+            <span class="chart-badge">Priya Chart 1</span>
+        </div>
+        <div class="chart-body" style="height: 400px;">
+            <canvas id="sportYieldChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#FFD700;">■</span> Rowing (6.916) &nbsp;&bull;&nbsp; 
+            <span style="color:#00d2ff;">■</span> Shooting (6.731) &nbsp;&bull;&nbsp; 
+            <span style="color:#0081C8;">■</span> Other Olympic Disciplines
+        </div>
+    </div>
+
+    <!-- Chart 2: Global Performance Metrics by Country (Bar Chart) -->
+    <div class="chart-card col-6">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Global Performance Metrics by Country</div>
+                <div class="chart-desc">Stacked Gold, Silver, Bronze distribution highlighting USA (735) and China (696).</div>
+            </div>
+            <span class="chart-badge">Priya Chart 2</span>
+        </div>
+        <div class="chart-body" style="height: 400px;">
+            <canvas id="countryPerformanceChart"></canvas>
+        </div>
+        <div style="font-size: 0.78rem; color: #9cb3c9; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+            <span style="color:#FFD700;">■</span> Gold &nbsp;&bull;&nbsp; 
+            <span style="color:#C0C0C0;">■</span> Silver &nbsp;&bull;&nbsp; 
+            <span style="color:#CD7F32;">■</span> Bronze
+        </div>
+    </div>
+</div>
+
+<!-- Strategic Recommendation Matrix -->
+<div class="dashboard-grid">
+    <div class="chart-card col-12">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">NOC Strategic Investment Guidance Matrix</div>
+                <div class="chart-desc">Targeted funding reallocation model based on athlete yield and international competitiveness.</div>
+            </div>
+            <span class="chart-badge">Decision Support</span>
+        </div>
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Sport Category</th>
+                        <th>Medal Yield Ratio</th>
+                        <th>Typical Squad Size</th>
+                        <th>Capital Intensity</th>
+                        <th>NOC Strategic Action</th>
+                        <th>Anticipated Cycle Return</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rowing</strong></td>
+                        <td><span style="color: #FFD700; font-weight:700;">6.916</span> (Rank #1)</td>
+                        <td>18 – 24 Athletes</td>
+                        <td>High (Boats &amp; Rigging)</td>
+                        <td><strong style="color: #00A651;">Aggressive Expansion</strong></td>
+                        <td>Multiple boat entries can capture 4+ podium finishes with elite core.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shooting</strong></td>
+                        <td><span style="color: #00d2ff; font-weight:700;">6.731</span> (Rank #2)</td>
+                        <td>16 – 26 Athletes</td>
+                        <td>Moderate (Precision Gear)</td>
+                        <td><strong style="color: #00A651;">High Priority Funding</strong></td>
+                        <td>Individual + Mixed team formats yield dual-podium conversion.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aquatics - Swimming</strong></td>
+                        <td>1.842 (Rank #8)</td>
+                        <td>40 – 60 Athletes</td>
+                        <td>High (Aquatic Centers)</td>
+                        <td><strong>Targeted Specialization</strong></td>
+                        <td>Concentrate on stroke specialists and relay depth.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Football / Basketball</strong></td>
+                        <td>0.125 (Rank #49)</td>
+                        <td>18 – 24 Athletes / Team</td>
+                        <td>Very High (Team Logistics)</td>
+                        <td><strong style="color: #EE334E;">Consolidate / Maintain</strong></td>
+                        <td>Single medal yield per 20+ athlete squad; low per-athlete yield.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Project Documentation & Technical Procedure{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Project Demonstration &amp; Documentation</h2>
+        <p>Step-by-step development procedure, system requirements, performance benchmark audit, and video walkthrough script.</p>
+    </div>
+    <div class="persona-badge">
+        <span>Comprehensive Technical Report &bull; 8 Epics &bull; 14 Tasks</span>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <div class="chart-card col-8">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Step-by-Step Development Procedure</div>
+                <div class="chart-desc">End-to-end lifecycle from data collection to Tableau BI and Flask deployment.</div>
+            </div>
+            <span class="chart-badge">Procedure</span>
+        </div>
+        <div style="font-size: 0.88rem; color: #d1e2f2; line-height: 1.6;">
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 1: Data Collection &amp; Database Extraction</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Extracted and synthesized 10 Olympic Games cycles (1992 to 2026) across Summer &amp; Winter Games.</li>
+                <li>Created 6 relational tables: <code>athletes</code>, <code>medal_results</code>, <code>country_sports_investment</code>, <code>host_performance</code>, <code>regional_efficiency</code>, and <code>sport_category_metrics</code>.</li>
+                <li>Established high-speed relational schema in SQLite (<code>olympic_analytics.db</code>) with multi-column indexes.</li>
+            </ul>
+
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 2: Data Preparation &amp; Feature Engineering</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Calibrated exact scenario numbers: Rowing at 6.916 medals/ath, Shooting at 6.731 medals/ath, USA at 735 medals, China at 696 medals, South America at 49.64%, Japan at 105 medals.</li>
+                <li>Cleaned null attributes, verified dimensional consistency, and joined physical biometric indicators with podium results.</li>
+                <li>Engineered 8 core calculation fields in Python and declarative Tableau XML.</li>
+            </ul>
+
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 3: Data Visualizations (10 Unique BI Visuals)</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Designed 10 unique worksheets covering horizontal bar charts, stacked superpower bar charts, investment vs medals bubble plots, regional efficiency pie charts, longitudinal line charts, host comparisons, and donut distributions.</li>
+            </ul>
+
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 4: Responsive Dashboards &amp; Tableau Story</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Assembled 3 targeted dashboards aligned with Ms. Priya (NOC Strategist), Mr. Carlos (Funding Analyst), and William Robert (Data Journalist).</li>
+                <li>Structured a 6-scene interactive Tableau story guiding stakeholders through the complete analytical narrative.</li>
+            </ul>
+
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 5: Performance Testing</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Evaluated data loading speed (0.245s for 11,326 rows), multi-dimensional filter latency (0.001ms), calculated fields throughput, and visual query response times (&lt;1.5ms).</li>
+            </ul>
+
+            <h4 style="color: #00d2ff; margin-top: 8px;">Activity 6: Web Integration with Flask</h4>
+            <ul style="margin-left: 20px; margin-bottom: 12px;">
+                <li>Developed modular Flask web application with dynamic Chart.js visualizations, live REST API endpoints, real-time data table filtering, and direct downloads.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chart-card col-4">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Project Stats &amp; Epics</div>
+                <div class="chart-desc">Completion Checklist</div>
+            </div>
+            <span class="chart-badge" style="background: rgba(0, 166, 81, 0.2); color: #00A651; border-color: #00A651;">100% Complete</span>
+        </div>
+        <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.8;">
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 1:</strong> Data Collection &amp; Extraction <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 2:</strong> Data Preparation &amp; Cleaning <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 3:</strong> Feature &amp; Calculated Fields <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 4:</strong> 10 Unique BI Visualizations <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 5:</strong> Responsive Dashboards (x3) <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 6:</strong> Tableau Interactive Story (x6) <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="border-bottom: 1px solid var(--border-color); padding: 6px 0;">
+                <strong>Epic 7:</strong> BI Performance Testing <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+            <div style="padding: 6px 0;">
+                <strong>Epic 8:</strong> Flask UI &amp; Documentation <span style="color:#00A651; float:right;">✔ DONE</span>
+            </div>
+        </div>
+
+        <div class="narrative-card" style="margin-top: 16px;">
+            <h4>System Requirements</h4>
+            <p style="font-size: 0.82rem;">
+                <strong>OS:</strong> Windows 10/11, macOS, Linux<br>
+                <strong>Runtime:</strong> Python 3.10+ (Flask, Pandas, NumPy, OpenPyXL)<br>
+                <strong>BI Tool:</strong> Tableau Desktop 2021+ / Tableau Public<br>
+                <strong>Browser:</strong> Chrome, Edge, Firefox, Safari
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Video Demonstration Script -->
+<div class="dashboard-grid">
+    <div class="chart-card col-12">
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">End-to-End Video Demonstration Script</div>
+                <div class="chart-desc">Structured walkthrough script for project recording &amp; stakeholder presentation.</div>
+            </div>
+            <span class="chart-badge">Video Script</span>
+        </div>
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Time</th>
+                        <th style="width: 25%;">Screen / Visual</th>
+                        <th style="width: 60%;">Spoken Explanation &amp; Demonstration Guide</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>00:00 – 01:00</strong></td>
+                        <td>Homepage &amp; Executive KPI Dashboard</td>
+                        <td>
+                            <em>"Welcome to the Global Olympic Sports Performance Analysis project spanning 1992 through 2026. Olympic performance is a direct reflection of national sports infrastructure, investment strategies, and elite talent cultivation. In this demonstration, we explore 10 Olympic editions across 60 countries and 50 sports, powered by Tableau Business Intelligence and our custom Flask analytical platform..."</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>01:00 – 02:45</strong></td>
+                        <td>Dashboard 1: Ms. Priya (NOC Strategy)</td>
+                        <td>
+                            <em>"Here we meet Ms. Priya, an NOC Performance Strategist tasked with deciding sport investment priorities. Looking at the horizontal bar chart of Avg Medals per Athlete, Priya discovers that Rowing leads the world with 6.916 medals per athlete, followed by Shooting at 6.731. Cross-referencing against top performers United States at 735 medals and China at 696 medals, Priya can confidently recommend targeted allocations to high-yield disciplines while avoiding capital drain in oversized squad sports..."</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>02:45 – 04:30</strong></td>
+                        <td>Dashboard 2: Mr. Carlos (Investment ROI)</td>
+                        <td>
+                            <em>"Next, Mr. Carlos at an international funding agency needs to allocate high-impact grants. On this bubble chart of Sports Investment vs. Medal Performance, Carlos spots agile overperformers Slovakia, Georgia, and Ethiopia, whose disproportionately large bubble sizes prove exceptional podium return per dollar. Furthermore, our regional pie chart proves that South America leads global efficiency at 49.64%, ahead of Europe/Asia at 45.98%, directing critical grants to emerging sporting powerhouses..."</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>04:30 – 06:15</strong></td>
+                        <td>Dashboard 3: William Robert (Media Narratives)</td>
+                        <td>
+                            <em>"Finally, broadcast data storyteller William Robert crafts documentary storylines. Our line chart illustrates historical medal swings from the Sydney 2000 low of 305 medals to the Tokyo 2020 peak of 363 medals, and 334 in Milano-Cortina 2026. On the host comparison chart, Japan's staggering 105 medals at Tokyo 2020 stands out alongside the USA's 100 in Atlanta and China's 93 in Beijing, proving the power of home advantage..."</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>06:15 – 07:45</strong></td>
+                        <td>Tableau Story &amp; Data Explorer</td>
+                        <td>
+                            <em>"We conclude by demonstrating our 6-scene interactive Tableau story, followed by the Data Explorer which enables real-time multi-dimensional slicing across years, regions, sports, and medal types, backed by validated sub-millisecond query performance..."</em>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

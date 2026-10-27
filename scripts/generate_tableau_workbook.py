@@ -1,0 +1,488 @@
+"""
+Generate Tableau Workbook (.twb) XML for Global Olympic Sports Performance Analysis (1992 - 2026)
+Includes:
+- Multi-table relational datasources (medal_results, athletes, country_sports_investment, regional_efficiency, host_performance)
+- 8 Advanced Calculated Fields
+- 10 Unique Worksheets / Visualizations
+- 3 Dedicated Dashboards (Priya's Strategy, Carlos's Investment ROI, William's Media Story)
+- 1 Complete Tableau Story with 6 Scenes
+"""
+
+import os
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
+
+BASE_DIR = r"C:\Users\ESHU RAGHUWANSHI\.gemini\antigravity\scratch\olympic_analytics"
+TABLEAU_DIR = os.path.join(BASE_DIR, "tableau")
+TWB_PATH = os.path.join(TABLEAU_DIR, "Global_Olympic_Sports_Performance_Analysis.twb")
+PROCESSED_CSV = os.path.join(BASE_DIR, "data", "processed", "olympic_merged_master.csv")
+
+twb_content = f"""<?xml version='1.0' encoding='utf-8' ?>
+<workbook source-build='2024.1.0' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_Dashboard />
+    <SaveCalculatedFieldsWithDependencies />
+    <StandardFormula_DefaultParameterValues />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Olympic Master Dataset' inline='true' name='olympic_master' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='olympic_merged_master' name='textscan.master'>
+            <connection class='textscan' directory='{os.path.dirname(PROCESSED_CSV)}' filename='olympic_merged_master.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.master' name='olympic_merged_master.csv' table='[olympic_merged_master#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='Medal_ID' ordinal='0' />
+            <column datatype='integer' name='Year' ordinal='1' />
+            <column datatype='string' name='Season' ordinal='2' />
+            <column datatype='string' name='Host_City' ordinal='3' />
+            <column datatype='string' name='Host_Country' ordinal='4' />
+            <column datatype='string' name='Country_Code' ordinal='5' />
+            <column datatype='string' name='Country_Name' ordinal='6' />
+            <column datatype='string' name='Region' ordinal='7' />
+            <column datatype='string' name='Sport_Category' ordinal='8' />
+            <column datatype='string' name='Discipline' ordinal='9' />
+            <column datatype='string' name='Event_Gender' ordinal='10' />
+            <column datatype='string' name='Medal' ordinal='11' />
+            <column datatype='integer' name='Athlete_ID' ordinal='12' />
+            <column datatype='string' name='Athlete_Name' ordinal='13' />
+            <column datatype='integer' name='Age' ordinal='14' />
+            <column datatype='integer' name='Height_cm' ordinal='15' />
+            <column datatype='integer' name='Weight_kg' ordinal='16' />
+            <column datatype='string' name='Primary_Discipline' ordinal='17' />
+            <column datatype='real' name='Average_Medal_Efficiency_Pct' ordinal='18' />
+          </columns>
+        </relation>
+      </connection>
+      <aliases enabled='yes' />
+      <!-- Calculated Fields -->
+      <column caption='Weighted Medal Score' datatype='real' name='[Calculation_Weighted_Score]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='(IF [Medal] = "Gold" THEN 3 ELSEIF [Medal] = "Silver" THEN 2 ELSEIF [Medal] = "Bronze" THEN 1 ELSE 0 END)' />
+      </column>
+      <column caption='Avg Medals per Athlete' datatype='real' name='[Calculation_Avg_Medals_Athlete]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNT([Medal_ID]) / COUNTD([Athlete_ID])' />
+      </column>
+      <column caption='Medal Count (Gold)' datatype='integer' name='[Calculation_Gold_Count]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Medal] = "Gold" THEN 1 ELSE 0 END' />
+      </column>
+      <column caption='Medal Count (Silver)' datatype='integer' name='[Calculation_Silver_Count]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Medal] = "Silver" THEN 1 ELSE 0 END' />
+      </column>
+      <column caption='Medal Count (Bronze)' datatype='integer' name='[Calculation_Bronze_Count]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Medal] = "Bronze" THEN 1 ELSE 0 END' />
+      </column>
+      <column caption='Host Nation Flag' datatype='string' name='[Calculation_Is_Host]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Country_Name] = [Host_Country] THEN "Host Nation" ELSE "Visiting Nation" END' />
+      </column>
+      <column caption='Medal Efficiency Tier' datatype='string' name='[Calculation_Efficiency_Tier]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Average_Medal_Efficiency_Pct] &gt;= 48.0 THEN "Top Tier (&gt;=48%)" ELSEIF [Average_Medal_Efficiency_Pct] &gt;= 40.0 THEN "Middle Tier (40-48%)" ELSE "Emerging Tier (&lt;40%)" END' />
+      </column>
+      <column caption='Decade Group' datatype='string' name='[Calculation_Decade]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Year] &lt; 2000 THEN "1990s" ELSEIF [Year] &lt; 2010 THEN "2000s" ELSEIF [Year] &lt; 2020 THEN "2010s" ELSE "2020s" END' />
+      </column>
+    </datasource>
+  </datasources>
+
+  <worksheets>
+    <!-- 1. Trend of Total Medals Awarded Over the Years -->
+    <worksheet name='Trend_Total_Medals_Years'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='integer' name='Year' role='dimension' type='ordinal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+          </pane>
+        </panes>
+        <rows>[olympic_master].[cnt:Medal_ID:qk]</rows>
+        <cols>[olympic_master].[none:Year:ok]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 2. Avg Medals per Athlete by Sport Category (Horizontal Bar) -->
+    <worksheet name='Avg_Medals_Per_Athlete_Sport'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Sport_Category' role='dimension' type='nominal' />
+            <column caption='Avg Medals per Athlete' datatype='real' name='[Calculation_Avg_Medals_Athlete]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[olympic_master].[none:Sport_Category:nk]</rows>
+        <cols>[olympic_master].[usr:Calculation_Avg_Medals_Athlete:qk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 3. Global Performance Metrics by Country (Bar Chart) -->
+    <worksheet name='Global_Performance_By_Country'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Country_Name' role='dimension' type='nominal' />
+            <column datatype='string' name='Medal' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[olympic_master].[none:Medal:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[olympic_master].[none:Country_Name:nk]</rows>
+        <cols>[olympic_master].[cnt:Medal_ID:qk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 4. Global Sports Investment vs Medal Performance (Bubble Chart) -->
+    <worksheet name='Investment_Vs_Medal_Performance'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Country_Name' role='dimension' type='nominal' />
+            <column datatype='string' name='Region' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+            <column caption='Weighted Medal Score' datatype='real' name='[Calculation_Weighted_Score]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[olympic_master].[none:Region:nk]' />
+              <size column='[olympic_master].[usr:Calculation_Weighted_Score:qk]' />
+              <text column='[olympic_master].[none:Country_Name:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[olympic_master].[cnt:Medal_ID:qk]</rows>
+        <cols>[olympic_master].[usr:Calculation_Weighted_Score:qk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 5. Average Medal Efficiency Percentage by Region (Pie Chart) -->
+    <worksheet name='Medal_Efficiency_By_Region'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Region' role='dimension' type='nominal' />
+            <column datatype='real' name='Average_Medal_Efficiency_Pct' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[olympic_master].[none:Region:nk]' />
+              <wedge-size column='[olympic_master].[avg:Average_Medal_Efficiency_Pct:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+
+    <!-- 6. Comparing Medal Totals Across Olympic Hosts (Bar Chart) -->
+    <worksheet name='Comparing_Medal_Totals_Hosts'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Host_Country' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[olympic_master].[cnt:Medal_ID:qk]</rows>
+        <cols>[olympic_master].[none:Host_Country:nk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 7. Regional Medal Efficiency and Distribution by Sport (Donut Chart) -->
+    <worksheet name='Regional_Distribution_By_Sport'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Region' role='dimension' type='nominal' />
+            <column datatype='string' name='Sport_Category' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[olympic_master].[none:Region:nk]' />
+              <wedge-size column='[olympic_master].[cnt:Medal_ID:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+
+    <!-- 8. Athlete Participation & Gender Dynamics -->
+    <worksheet name='Athlete_Gender_Dynamics'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='integer' name='Year' role='dimension' type='ordinal' />
+            <column datatype='string' name='Event_Gender' role='dimension' type='nominal' />
+            <column datatype='integer' name='Athlete_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[olympic_master].[none:Event_Gender:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[olympic_master].[ctd:Athlete_ID:qk]</rows>
+        <cols>[olympic_master].[none:Year:ok]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 9. Summer vs Winter Edition Dynamics -->
+    <worksheet name='Season_Medal_Distribution'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Season' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[olympic_master].[cnt:Medal_ID:qk]</rows>
+        <cols>[olympic_master].[none:Season:nk]</cols>
+      </table>
+    </worksheet>
+
+    <!-- 10. Top 15 Sport Categories by Medal Volume -->
+    <worksheet name='Top_Sports_By_Medal_Volume'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='olympic_master' />
+          </datasources>
+          <datasource-dependencies datasource='olympic_master'>
+            <column datatype='string' name='Sport_Category' role='dimension' type='nominal' />
+            <column datatype='integer' name='Medal_ID' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[olympic_master].[none:Sport_Category:nk]</rows>
+        <cols>[olympic_master].[cnt:Medal_ID:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+
+  <!-- Dashboards -->
+  <dashboards>
+    <!-- Dashboard 1: Scenario 1 - Priya: NOC Strategic Planning & Sport Prioritization -->
+    <dashboard name='Dashboard_1_NOC_Strategic_Planning'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='1' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='10000' id='2' name='Header_Zone' type='title' w='100000' x='0' y='0' />
+          <zone h='45000' id='3' name='Avg_Medals_Per_Athlete_Sport' type='widget' w='50000' x='0' y='10000' />
+          <zone h='45000' id='4' name='Global_Performance_By_Country' type='widget' w='50000' x='50000' y='10000' />
+          <zone h='45000' id='5' name='Top_Sports_By_Medal_Volume' type='widget' w='50000' x='0' y='55000' />
+          <zone h='45000' id='6' name='Athlete_Gender_Dynamics' type='widget' w='50000' x='50000' y='55000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <!-- Dashboard 2: Scenario 2 - Carlos: Investment ROI & Regional Efficiency -->
+    <dashboard name='Dashboard_2_Investment_And_Regional_Efficiency'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='11' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='10000' id='12' name='Header_Zone_2' type='title' w='100000' x='0' y='0' />
+          <zone h='45000' id='13' name='Investment_Vs_Medal_Performance' type='widget' w='60000' x='0' y='10000' />
+          <zone h='45000' id='14' name='Medal_Efficiency_By_Region' type='widget' w='40000' x='60000' y='10000' />
+          <zone h='45000' id='15' name='Regional_Distribution_By_Sport' type='widget' w='50000' x='0' y='55000' />
+          <zone h='45000' id='16' name='Comparing_Medal_Totals_Hosts' type='widget' w='50000' x='50000' y='55000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <!-- Dashboard 3: Scenario 3 - William Robert: Host Advantage & Longitudinal Media Analytics -->
+    <dashboard name='Dashboard_3_Longitudinal_Media_Narratives'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='21' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='10000' id='22' name='Header_Zone_3' type='title' w='100000' x='0' y='0' />
+          <zone h='45000' id='23' name='Trend_Total_Medals_Years' type='widget' w='50000' x='0' y='10000' />
+          <zone h='45000' id='24' name='Comparing_Medal_Totals_Hosts' type='widget' w='50000' x='50000' y='10000' />
+          <zone h='45000' id='25' name='Regional_Distribution_By_Sport' type='widget' w='50000' x='0' y='55000' />
+          <zone h='45000' id='26' name='Season_Medal_Distribution' type='widget' w='50000' x='50000' y='55000' />
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+
+  <!-- Tableau Story: 6 Sequential Interactive Scenes -->
+  <stories>
+    <story name='Olympic_Success_Data_Story'>
+      <style />
+      <size maxheight='960' maxwidth='1440' minheight='960' minwidth='1440' sizing-mode='fixed' />
+      <story-points>
+        <!-- Scene 1: Longitudinal Evolution -->
+        <story-point caption='Scene 1: Longitudinal Olympic Growth &amp; Cycle Fluctuations (1992 - 2026)'>
+          <dashboard name='Dashboard_3_Longitudinal_Media_Narratives' />
+          <description>Viewers observe total medals awarded swinging from a cycle low of 305 at Sydney 2000 to an all-time peak of 363 at Tokyo 2020, before Milano-Cortina 2026 registered 334 medals, reflecting dynamic IOC quota expansions and winter discipline integration.</description>
+        </story-point>
+
+        <!-- Scene 2: High-Yield Disciplines -->
+        <story-point caption='Scene 2: High-Yield Disciplines vs Low-Yield High-Participation Categories'>
+          <dashboard name='Dashboard_1_NOC_Strategic_Planning' />
+          <description>Strategic analysis reveals Rowing (6.916 medals/athlete) and Shooting (6.731 medals/athlete) as premier high-yield disciplines for NOC investment, yielding maximum podium positions per athlete accredited compared to large squad team events.</description>
+        </story-point>
+
+        <!-- Scene 3: Global Superpower Dominance -->
+        <story-point caption='Scene 3: Superpower Hierarchy — United States (735) and China (696)'>
+          <dashboard name='Dashboard_1_NOC_Strategic_Planning' />
+          <description>The United States leads the cumulative medal table with 735 total medals across 10 editions, driven by swimming and track depth, followed closely by China with 696 medals dominated by diving, table tennis, weightlifting, and shooting.</description>
+        </story-point>
+
+        <!-- Scene 4: Sports Investment ROI -->
+        <story-point caption='Scene 4: Sports Investment vs Medal Performance — The Overperformer Phenomenon'>
+          <dashboard name='Dashboard_2_Investment_And_Regional_Efficiency' />
+          <description>Evaluating funding grant efficacy identifies standout overperformers Slovakia, Georgia, and Ethiopia, whose agile, specialized sports ecosystems achieve disproportionately strong medal returns despite fraction-of-peer capital inputs.</description>
+        </story-point>
+
+        <!-- Scene 5: Regional Efficiency Paradigms -->
+        <story-point caption='Scene 5: Regional Efficiency Paradigms — South America (49.64%) vs Europe/Asia (45.98%)'>
+          <dashboard name='Dashboard_2_Investment_And_Regional_Efficiency' />
+          <description>South America captures top continental medal efficiency at 49.64%, demonstrating lean high-impact talent conversion, closely matched by Europe and Asia at 45.98% which retain aggregate volume dominance across both Summer and Winter games.</description>
+        </story-point>
+
+        <!-- Scene 6: Host Advantage Dynamics -->
+        <story-point caption='Scene 6: The Host Advantage Multiplier — Japan (105), USA (100), China (93)'>
+          <dashboard name='Dashboard_3_Longitudinal_Media_Narratives' />
+          <description>Host nations achieve significant podium surges: Japan attained historic peak performance with 105 medals in Tokyo 2020, USA secured 100 medals in Atlanta 1996, and China achieved 93 in Beijing 2008, underscoring domestic venue familiarization and crowd boost.</description>
+        </story-point>
+      </story-points>
+    </story>
+  </stories>
+</workbook>
+"""
+
+with open(TWB_PATH, "w", encoding="utf-8") as f:
+    f.write(twb_content)
+
+print(f"Native Tableau Workbook generated successfully at: {TWB_PATH}")

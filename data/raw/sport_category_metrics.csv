@@ -1,0 +1,51 @@
+Sport_Category,Season,Total_Medals,Athlete_Count,Avg_Medals_Per_Athlete,Gold_Medals,Silver_Medals,Bronze_Medals,Disciplines_Count
+Rowing,Summer,166,24,6.917,66,51,49,4
+Shooting,Summer,175,26,6.731,67,55,53,5
+Sailing,Summer,93,47,1.979,36,26,31,4
+Archery,Summer,80,50,1.6,24,28,28,3
+Judo,Summer,80,51,1.569,24,26,30,4
+Rugby Sevens,Summer,70,45,1.556,25,21,24,2
+Wrestling - Greco-Roman,Summer,76,50,1.52,29,22,25,6
+Badminton,Summer,86,58,1.483,26,30,30,4
+Volleyball,Summer,83,59,1.407,24,30,29,2
+Equestrian,Summer,64,46,1.391,12,31,21,3
+Triathlon,Summer,64,46,1.391,17,17,30,2
+Modern Pentathlon,Summer,69,55,1.255,28,30,11,2
+Fencing,Summer,66,53,1.245,16,28,22,4
+Table Tennis,Summer,70,59,1.186,31,18,21,4
+Field Hockey,Summer,71,62,1.145,17,30,24,2
+Artistic Swimming,Summer,64,57,1.123,14,30,20,2
+Golf,Summer,60,54,1.111,19,16,25,2
+Diving,Summer,86,80,1.075,29,32,25,4
+Surfing,Summer,66,62,1.065,19,21,26,2
+Boxing,Summer,74,72,1.028,27,24,23,5
+Basketball,Summer,73,71,1.028,23,22,28,2
+Skateboarding,Summer,71,72,0.986,22,25,24,2
+Canoeing - Sprint,Summer,58,59,0.983,22,17,19,3
+Weightlifting,Summer,77,82,0.939,39,19,19,5
+Sport Climbing,Summer,61,66,0.924,23,20,18,2
+Handball,Summer,73,82,0.89,23,19,31,2
+Tennis,Summer,67,77,0.87,32,21,14,4
+Water Polo,Summer,67,79,0.848,26,23,18,2
+Taekwondo,Summer,66,83,0.795,27,18,21,4
+Wrestling - Freestyle,Summer,62,79,0.785,22,21,19,6
+Gymnastics - Artistic,Summer,74,105,0.705,19,27,28,5
+BMX Cycling,Summer,72,103,0.699,30,29,13,2
+Football,Summer,47,73,0.644,18,20,9,2
+Biathlon,Winter,41,65,0.631,16,12,13,4
+Rhythmic Gymnastics,Summer,67,111,0.604,23,30,14,2
+Cycling - Road,Summer,61,107,0.57,26,16,19,2
+Figure Skating,Winter,36,66,0.545,10,12,14,5
+Ice Hockey,Winter,31,62,0.5,11,11,9,2
+Cycling - Track,Summer,67,137,0.489,24,20,23,4
+Athletics - Field,Summer,88,181,0.486,30,28,30,5
+Cross-Country Skiing,Winter,38,84,0.452,16,11,11,4
+Alpine Skiing,Winter,29,66,0.439,11,4,14,5
+Trampoline Gymnastics,Summer,59,138,0.428,22,14,23,2
+Speed Skating,Winter,33,82,0.402,10,12,11,5
+Freestyle Skiing,Winter,29,76,0.382,10,10,9,5
+Snowboard,Winter,37,98,0.378,12,11,14,4
+Athletics - Track,Summer,70,187,0.374,27,23,20,6
+Aquatics - Swimming,Summer,76,220,0.345,22,23,31,5
+Short Track Speed Skating,Winter,28,82,0.341,9,14,5,4
+Bobsleigh & Skeleton,Winter,32,106,0.302,11,13,8,4

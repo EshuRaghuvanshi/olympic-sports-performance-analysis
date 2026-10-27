@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Data Explorer - Filterable Olympic Master Dataset{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Interactive Olympic Data Explorer &amp; Query Console</h2>
+        <p>Slice, filter, and inspect athlete podium outcomes, regional metadata, and event disciplines in real time.</p>
+    </div>
+    <div class="persona-badge">
+        <span id="recordCount">Loading records...</span>
+    </div>
+</div>
+
+<!-- Dynamic Slicers & Filters -->
+<div class="filter-bar">
+    <div class="filter-group">
+        <label for="filterYear">Olympic Year</label>
+        <select id="filterYear" class="filter-select" onchange="filterDataTable()">
+            <option value="ALL">All Editions (1992 - 2026)</option>
+            {% for y in years %}
+            <option value="{{ y }}">{{ y }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="filterRegion">Continental Region</label>
+        <select id="filterRegion" class="filter-select" onchange="filterDataTable()">
+            <option value="ALL">All Continental Regions</option>
+            {% for r in regions %}
+            <option value="{{ r }}">{{ r }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="filterSport">Sport Category</label>
+        <select id="filterSport" class="filter-select" onchange="filterDataTable()">
+            <option value="ALL">All 50 Sports</option>
+            {% for s in sports %}
+            <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="filterMedal">Podium Medal</label>
+        <select id="filterMedal" class="filter-select" onchange="filterDataTable()">
+            <option value="ALL">All Medals (Gold, Silver, Bronze)</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Bronze">Bronze</option>
+        </select>
+    </div>
+
+    <div class="filter-group" style="margin-left: auto;">
+        <label>&nbsp;</label>
+        <a href="/download/master-csv" class="btn-download" style="background: linear-gradient(135deg, #00A651, #00d2ff);">
+            Export Filtered CSV
+        </a>
+    </div>
+</div>
+
+<!-- Data Table -->
+<div class="data-table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Edition / Season</th>
+                <th>Host City</th>
+                <th>Country</th>
+                <th>Region</th>
+                <th>Sport Category</th>
+                <th>Discipline</th>
+                <th>Medalist Athlete</th>
+                <th>Medal Won</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Dynamically populated via AJAX in dashboard.js -->
+        </tbody>
+    </table>
+</div>
+{% endblock %}

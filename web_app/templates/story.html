@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau Story: Global Olympic Sports Performance (6 Scenes){% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Tableau Interactive Story: The Anatomy of Olympic Excellence</h2>
+        <p>A 6-scene guided analytical narrative dissecting 34 years of Olympic data (1992 – 2026).</p>
+    </div>
+    <div class="persona-badge">
+        <span>Tableau Story: 6 Scenes &bull; Data Narrative</span>
+    </div>
+</div>
+
+<!-- Story Point Tabs Navigation -->
+<div class="story-tabs">
+    <button class="story-tab-btn active" onclick="showScene(0)">1. Longitudinal Swings</button>
+    <button class="story-tab-btn" onclick="showScene(1)">2. High-Yield Disciplines</button>
+    <button class="story-tab-btn" onclick="showScene(2)">3. Superpower Hierarchy</button>
+    <button class="story-tab-btn" onclick="showScene(3)">4. Investment Overperformers</button>
+    <button class="story-tab-btn" onclick="showScene(4)">5. Regional Efficiency</button>
+    <button class="story-tab-btn" onclick="showScene(5)">6. Host Advantage</button>
+</div>
+
+<!-- SCENE 1: Longitudinal Swings -->
+<div class="story-scene active" id="scene-0">
+    <div class="narrative-card">
+        <h4>Scene 1: Longitudinal Olympic Growth &amp; Cycle Fluctuations (1992 – 2026)</h4>
+        <p>
+            Across 10 Olympic cycles spanning 34 years, total medals awarded fluctuated markedly based on event expansions, athlete quota adjustments, and seasonal formats. 
+            The dataset establishes a <strong>historical low of 305 medals at Sydney 2000</strong>, surging to an <strong>all-time peak of 363 medals at Tokyo 2020</strong>, and recording <strong>334 medals at the Milano-Cortina 2026 Winter Games</strong>.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Longitudinal Medal Trajectory (1992 – 2026)</div>
+                    <div class="chart-desc">Total Olympic medals awarded per edition, highlighting historical swings.</div>
+                </div>
+                <span class="chart-badge">Visual 1</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="yearlyTrendLineChartStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 2: High-Yield Disciplines -->
+<div class="story-scene" id="scene-1">
+    <div class="narrative-card" style="border-left-color: #FFD700;">
+        <h4 style="color: #FFD700;">Scene 2: High-Yield Disciplines vs Low-Yield Squad Categories</h4>
+        <p>
+            When examining podium finishes per accredited competitor, sport categories exhibit stark yield differentials. 
+            <strong style="color: #FFD700;">Rowing achieves 6.916 medals per athlete</strong>, while 
+            <strong style="color: #00d2ff;">Shooting generates 6.731 medals per athlete</strong>. 
+            In contrast, major team sports such as Football and Basketball require 18–24 accredited squad members to contend for a single medal outcome. 
+            For NOC strategists like Ms. Priya, high-yield individual/compact disciplines represent the most capital-efficient pathway to ascending the medal table.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Avg Medals per Athlete by Sport Category</div>
+                    <div class="chart-desc">Horizontal Bar Chart identifying high-yield vs low-yield sports (Rowing: 6.916, Shooting: 6.731).</div>
+                </div>
+                <span class="chart-badge">Visual 2</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="sportYieldChartStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 3: Superpower Hierarchy -->
+<div class="story-scene" id="scene-2">
+    <div class="narrative-card" style="border-left-color: #0081C8;">
+        <h4 style="color: #0081C8;">Scene 3: The Superpower Hierarchy — United States (735) and China (696)</h4>
+        <p>
+            The cumulative medal table across the 1992–2026 window is anchored by two dominant sporting powers: 
+            the <strong>United States with 735 total medals</strong> and <strong>China with 696 total medals</strong>. 
+            While the US model relies on collegiate athletic depth in swimming and track &amp; field, the Chinese model leverages state-sponsored high-performance academies dominating diving, table tennis, weightlifting, and shooting. 
+            Together, these two nations captured over 41% of all medals awarded across the 10 editions.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Global Performance Metrics by Country</div>
+                    <div class="chart-desc">Stacked Gold, Silver, Bronze distribution highlighting USA (735) and China (696).</div>
+                </div>
+                <span class="chart-badge">Visual 3</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="countryPerformanceChartStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 4: Investment Overperformers -->
+<div class="story-scene" id="scene-3">
+    <div class="narrative-card" style="border-left-color: #00d2ff;">
+        <h4 style="color: #00d2ff;">Scene 4: Sports Investment vs Medal Performance — The Overperformer Phenomenon</h4>
+        <p>
+            Financial scale alone does not guarantee podium success. When cross-referencing national sports agency expenditure against medal counts, 
+            agile nations like <strong style="color: #00d2ff;">Slovakia (28 medals on $110M)</strong>, 
+            <strong style="color: #00d2ff;">Georgia (30 medals on $85M)</strong>, and 
+            <strong style="color: #00d2ff;">Ethiopia (36 medals on $75M)</strong> emerge as hyper-efficient outliers. 
+            By hyper-specializing in wrestling, canoe slalom, and long-distance athletics, these nations achieve cost-per-medal figures under $4M USD—compared to $6.6M+ in superpower nations.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Global Sports Investment vs. Medal Performance</div>
+                    <div class="chart-desc">Bubble Chart: X=Investment ($M), Y=Medals, Size=Efficiency %. Highlighting SVK, GEO, ETH.</div>
+                </div>
+                <span class="chart-badge">Visual 4</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="investmentBubbleChartStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 5: Regional Efficiency -->
+<div class="story-scene" id="scene-4">
+    <div class="narrative-card" style="border-left-color: #00A651;">
+        <h4 style="color: #00A651;">Scene 5: Regional Efficiency Paradigms — South America (49.64%) vs Europe/Asia (45.98%)</h4>
+        <p>
+            On a continental scale, <strong style="color: #00A651;">South America leads global efficiency at 49.64%</strong>, 
+            converting lean financial resources into high-probability podium opportunities in volleyball, judo, and sailing. 
+            <strong style="color: #0081C8;">Europe and Asia follow at 45.98%</strong>, combining massive aggregate infrastructure investments ($28.4B) with steady dominance across both Summer and Winter Olympic programs.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Average Medal Efficiency Percentage by Region</div>
+                    <div class="chart-desc">Pie Chart illustrating South America (49.64%) and Europe/Asia (45.98%) leadership.</div>
+                </div>
+                <span class="chart-badge">Visual 5</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="regionalEfficiencyPieStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 6: Host Advantage -->
+<div class="story-scene" id="scene-5">
+    <div class="narrative-card" style="border-left-color: #FCB131;">
+        <h4 style="color: #FCB131;">Scene 6: The Host Advantage Multiplier — Japan (105), USA (100), China (93)</h4>
+        <p>
+            Home soil advantage is a quantifiable phenomenon across Olympic history. 
+            <strong style="color: #FFD700;">Japan as host nation surged to 105 medals at Tokyo 2020</strong> (+1475% over their away average of 6.67), 
+            followed by the <strong style="color: #00d2ff;">United States with 100 medals at Atlanta 1996</strong>, and 
+            <strong style="color: #EE334E;">China with 93 medals at Beijing 2008</strong>. 
+            Familiar venues, home crowds, climate acclimatization, and targeted host-country qualification quotas consistently deliver historic podium peaks.
+        </p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="chart-card col-12">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Comparing Medal Totals Across Olympic Hosts</div>
+                    <div class="chart-desc">Host Nation vs Away Average: Japan (105), USA (100), and China (93).</div>
+                </div>
+                <span class="chart-badge">Visual 6</span>
+            </div>
+            <div class="chart-body" style="height: 380px;">
+                <canvas id="hostComparisonBarChartStory"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Mirror Chart.js rendering on story scene canvases
+document.addEventListener("DOMContentLoaded", () => {
+    // Scene 1
+    fetch("/api/yearly-trend").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("yearlyTrendLineChartStory");
+        if (ctx) new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: data.years,
+                datasets: [{
+                    label: "Total Medals Awarded",
+                    data: data.totals,
+                    borderColor: "#00d2ff",
+                    backgroundColor: "rgba(0, 210, 255, 0.15)",
+                    borderWidth: 3,
+                    pointBackgroundColor: data.years.map(y => y===2000 ? "#EE334E" : y===2020 ? "#FFD700" : y===2026 ? "#00A651" : "#0081C8"),
+                    pointRadius: 6,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    });
+
+    // Scene 2
+    fetch("/api/sports-yield").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("sportYieldChartStory");
+        if (ctx) new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: data.categories.slice(0, 15),
+                datasets: [{
+                    label: "Avg Medals per Athlete",
+                    data: data.yields.slice(0, 15),
+                    backgroundColor: data.categories.slice(0, 15).map(c => c==="Rowing" ? "#FFD700" : c==="Shooting" ? "#00d2ff" : "rgba(0, 129, 200, 0.7)")
+                }]
+            },
+            options: { indexAxis: "y", responsive: true, maintainAspectRatio: false }
+        });
+    });
+
+    // Scene 3
+    fetch("/api/global-performance").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("countryPerformanceChartStory");
+        if (ctx) new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: data.countries.slice(0, 12),
+                datasets: [
+                    { label: "Gold", data: data.gold.slice(0, 12), backgroundColor: "#FFD700" },
+                    { label: "Silver", data: data.silver.slice(0, 12), backgroundColor: "#C0C0C0" },
+                    { label: "Bronze", data: data.bronze.slice(0, 12), backgroundColor: "#CD7F32" }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
+        });
+    });
+
+    // Scene 4
+    fetch("/api/investment-bubble").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("investmentBubbleChartStory");
+        if (ctx) {
+            const bData = data.map(i => ({ x: i.investment, y: i.medals, r: Math.max(5, Math.min(25, i.efficiency/4)), code: i.country_code, is_highlight: i.is_highlight }));
+            new Chart(ctx, {
+                type: "bubble",
+                data: {
+                    datasets: [{
+                        label: "Efficiency Bubble",
+                        data: bData,
+                        backgroundColor: bData.map(b => b.is_highlight ? "#00d2ff" : "rgba(0, 166, 81, 0.6)")
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+    });
+
+    // Scene 5
+    fetch("/api/regional-efficiency").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("regionalEfficiencyPieStory");
+        if (ctx) new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: data.regions,
+                datasets: [{ data: data.efficiencies, backgroundColor: ["#00A651", "#0081C8", "#FCB131", "#EE334E", "#9d4edd"] }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    });
+
+    // Scene 6
+    fetch("/api/host-comparison").then(r => r.json()).then(data => {
+        const ctx = document.getElementById("hostComparisonBarChartStory");
+        if (ctx) new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: data.hosts,
+                datasets: [
+                    { label: "Host Medals", data: data.host_medals, backgroundColor: "#FFD700" },
+                    { label: "Away Average", data: data.non_host_avg, backgroundColor: "rgba(156, 179, 201, 0.4)" }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    });
+});
+</script>
+{% endblock %}
